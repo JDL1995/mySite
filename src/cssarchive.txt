@@ -1,0 +1,177 @@
+.title{
+    background-color: white;
+    width:95%;
+    left:auto;
+    right:auto;
+    top:15%;
+    height:130px;
+    border-radius:25px;
+    display:flex;
+    border:2px solid black;
+    position:relative;
+
+
+}
+.container{
+    width:100%;
+    height:auto;
+}
+.title>img{
+    
+    size:cover;
+}
+.leftSide{
+    left:0;
+    height:100%;
+    width:33%;
+    background-image:url('src/goodsize.jpg');
+    background-size:cover;
+    border-bottom-left-radius:25px;
+    border-top-left-radius: 25px;
+
+}
+.rightSide{
+   
+    width:67%;
+    height:100%;
+    right:0;
+    font-size:x-large;
+    align-items: center;
+   position:relative;
+    text-align:center;
+    display:flex;
+   
+}
+.myText{   
+    color:black;
+    position:relative;
+    vertical-align: middle;
+    left:50%;
+    font-size:300%;
+    transform:translate(-50%);
+    font-family: 'Russo One', sans-serif;
+}
+.myBody{
+    overflow-x: hidden;
+    background-color:grey;
+    color:white;
+    width:100%;
+    height:100vw;
+    display:block;
+}
+.articleBody{
+    top:50px;
+    position:relative;
+    height:auto;
+    display: flex;
+    color:black;
+    display:block;
+}
+.blk{color:black;}
+.mainBody{
+    background-color: white;
+    
+    width:100%;
+    left:auto;
+    right:auto;
+    top:5%;
+    height:auto;
+    border-radius:25px;
+    display:flex;
+
+    position:relative;
+
+}
+.container2{
+    position:relative;
+    display:inline-block;
+    width:100%;
+    height:auto;
+}
+.articleTitle{
+    display:flex;
+    color:black;
+    position:relative;
+    vertical-align: middle;
+    left:50%;
+    font-size:250%;
+    transform:translate(-20%);
+    top:0;
+    font-family: 'Russo One', sans-serif;
+}
+.linkToSections{
+    color:black;
+    position:relative;
+    vertical-align: middle;
+    align-items: center;
+    font-size:100%;
+  
+    left:50%;  
+  
+    left:auto;
+    right:auto;
+    top:0;
+    width:100%;
+    font-family: 'Russo One', sans-serif;
+    display:flexbox;
+    text-align: center;
+}
+.contentLinks{
+    text-align: center;
+    align-items: center;
+    left:23%;
+
+}
+.show{color:black;
+    position:relative;
+    align-items: center;
+    left:auto;
+    right:auto;
+    
+    
+}
+.majorSubsection{
+  
+    height:auto;
+    left:5%;
+    display:block;
+    width:100%;
+    position:relative;
+    color:black;
+}
+.subtitle{
+        /* Renamed property in CSS3 draft spec */
+    width: 50%;
+    position:relative;
+    color:black;
+    font-size:200%;
+    left:50%;
+    transform:translate(-20%,0);
+    
+}
+.sub{
+    left:50%;
+    transform:translate(-22.5%,0);
+      /* Renamed property in CSS3 draft spec */
+    width: 100%;
+
+}
+.SubSubtitle{
+    width:100%;
+    position:relative;
+}
+.subSubHeading{
+    left:5%;
+    color:black;
+    font-size:150%;
+}
+.subBullets{
+    left:10%;
+    color:black;
+    font-size:100%;
+}
+
+
+
+
+
