@@ -19,6 +19,11 @@ export type sstitle={
 export type subBullet={
     content:string;
 }
+export type comment={
+    name:string;
+    content:string;
+    articleId:string;
+}
 
 
 export const myArticle={title:"My Article",

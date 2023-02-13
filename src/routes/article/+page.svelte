@@ -6,11 +6,14 @@
 	import type { article } from '../../lib/server/types';
 	import type { subtitle } from '../../lib/server/types';
 </script>
-
-<div class="container">
-	<div class="title">
-		<a class="leftSide" href="/"><div class="leftSide" /></a>
-		<div class="rightSide"><span class="myText2">{data.Article.Title}</span></div>
+<svelte:head>
+  <title>About Svelte</title>
+</svelte:head>
+<div class="container4">
+	<div class="title3 w-full">
+		<div class="leftSide2" />
+		<div class="w-2/3 grid grid-cols-1"><span class="myText2 text-xl text-center">{data.Article.Title}</span>
+            <span class="text-black"><ul class="articletop"><li class="topic ml-5">C++</li><li class="author ml-5 text-black">Jonathan Lathrop</li><li class="published ml-5 text-black">2-12-23</li></ul></span></div>
 	</div>
 </div>
 <div class="mainBody">
@@ -24,7 +27,7 @@
 		<div class="articleBody">
 			{#each data.Article.Subtitles as subtitles2, j}
 				<div class="majorSubsection" id={j.toString()}>
-					<div class="subtitle"><p class="sub">{subtitles2.Content}</p></div>
+					<div class="subtitle"><p class="sub font-bold">{subtitles2.Content}</p></div>
 					{#each subtitles2.SubSubtitles as subSubtitles, k}
 						<div class="SubSubtitle">
 							<div class="subSubHeading">
