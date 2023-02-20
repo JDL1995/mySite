@@ -1,6 +1,7 @@
 <script lang="ts">
     import '../tailwind.css';
     import '../styles.css';
+    import '../FA/css/all.min.css'
     // import Hidden from '../lib/server/directives/Hidden.svelte'
 	
       let showMenu = false;
@@ -60,7 +61,9 @@ menuOver=true;
   }
    
   </script>
-
+<svelte:head>
+  
+</svelte:head>
   
 
   

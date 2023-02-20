@@ -1,4 +1,4 @@
-import Database from "better-sqlite3";
+import Database from 'better-sqlite3';
 import dotenv from 'dotenv';
 const DB_PATH:any = process.env['DB_PATH']
 
