@@ -1,7 +1,9 @@
+import { jewish } from "@/lib/server/types";
 import { getArticle } from "../lib/server/server";
 import type {PageServerLoad} from "./$types"
 
 export const load:PageServerLoad = (()=>{
+	jewish();
 const Article=getArticle();
 return {
     Article

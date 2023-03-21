@@ -13,17 +13,54 @@
     position:relative;
 
 }
+.snippet{
+    width:100%;
+    height:auto;
+    background-color: grey;
+    text:black;
+    font-size:x-large;
+}
 .title3{
     background-color: white;
     width:100vw;
     left:auto;
     right:auto;
     top:15%;
-    height: 75px;
+    height: 20vh;
     display:flex;
     border:2px solid black;
     position:relative;
 
+}
+.title7{
+    background-color: white;
+    width:90vw;
+    top:10px;
+    left:auto;
+    right:auto;
+    height: 25vh;
+    color:white;
+    display:flex;
+    border:2px solid black;
+    position:relative;
+
+}
+.specheight{
+    height:30vh;
+}
+.title7:hover{
+    background-color: white;
+    width:95vw;
+    top:10px;
+    left:auto;
+    right:auto;
+    height: 30vh;
+    color:white;
+    display:flex;
+    border:2px solid black;
+    position:relative;
+    border-color: #26bf47;
+    box-shadow: 0 0 10px #26bf47;
 }
 .me{
     bottom:0;
@@ -164,6 +201,15 @@
     transform:translate(-50%);
     font-family: 'Russo One', sans-serif;
 }
+.myText7{  
+    color:white;
+    position:relative;
+    vertical-align: middle;
+    left:50%;
+    font-size:2.5vmin;
+    transform:translate(-50%);
+    font-family: 'Russo One', sans-serif;
+}
 .topic{
     color:orange;
    
@@ -176,6 +222,26 @@
     left:10px;
        top:0.19rem;
     color: black;
+    /* change icon code here */
+    content: '\f558';
+    /* optional animation */
+   
+   }
+   .topic2{
+    color:orange;
+    font-size: 1.5vmin;
+    padding-left: 1.9vmin;
+  
+}
+.topic2::before {
+    font-weight:900;
+    font-family: 'Font Awesome 6 Free';
+    font-size: 1.5vmin;
+    position: absolute;
+    line-height:1.5vmin;
+    left:1px;
+       top:0.19rem;
+    color: white;
     /* change icon code here */
     content: '\f558';
     /* optional animation */
@@ -202,9 +268,59 @@
     /* optional animation */
    
    }
+   .published2{
+    
+    font-size: 1.5vmin;
+    padding-left: 1.9vmin;
+   }
+   .published2::before {
+       font-weight:900;
+       font-family: 'Font Awesome 6 Free';
+       font-size: 1.5vmin;
+       position: absolute;
+       left:1px;
+       line-height:1.5vmin;
+          top:0.19rem;
+       color: white;
+       /* change icon code here */
+       content: '\f073';
+       /* optional animation */
+      
+      }
    .author{
     color:black;
    
+}
+.snippet{
+    width:max(50vw);
+    height:auto;
+    background-color: grey;
+    text:white !important;
+
+}
+.articlePic{
+    width:60vw;
+    height:40vh;
+    margin:auto;
+}
+.contents7{
+    overflow-y:scroll;
+    width:75%;
+    background-color: white;
+    height:90%;
+    left:50%;
+    color:black;
+    bottom:5%;
+    transform: translate(17%);
+    justify-content: center;
+    text-align: center;
+    line-height:5%;
+}
+.rightside7{
+    font-size:2.9vmin;
+}
+.precontents{
+    line-height:4.5vmin;
 }
 .author::before {
     font-weight:900;
@@ -219,11 +335,43 @@
     /* optional animation */
    
    }
+   .author2{
+    color:white;
+    font-size: 1.5vmin;
+    margin-left:0;
+    margin-right:0;
+    padding-left: 1.5vmin;
+   
+}
+.author2::before {
+    font-weight:900;
+    font-family: 'Font Awesome 6 Free';
+    font-size: 1.2vmin;
+    position: absolute;
+    left:1px;
+    right:1px;
+   margin-left:1px;
+       top:0.19rem;
+    color: white;
+    /* change icon code here */
+    content: '\f508';
+    /* optional animation */
+   
+   }
    .articletop{
     padding: 0;
     list-style-type: none;
    line-height: 2.62;
    display:inline-flex;
+   }
+   .articletop2{
+    display:inline-flex;
+    justify-content: space-around;
+    width:100%;
+    padding: 0;
+    list-style-type: none;
+   line-height: 1.62;
+
    }
 .myBody{
     display:inline-block;

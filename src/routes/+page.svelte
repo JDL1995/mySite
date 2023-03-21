@@ -4,17 +4,22 @@
 
 	import Carousel from 'svelte-carousel';
 	import { browser } from '$app/environment';
-
+	
 	let carousel; // for calling methods of the carousel instance
 
 	const handleNextClick = () => {
 		carousel.goToNext();
 	};
 	const goToArticle = () => {};
+	const lesgo=()=>{
+	const mys="^^^^lapodoo";
+let myx=mys.search("^^^^");
+console.log(myx);}
+
 </script>
 
 <div class="container4">
-	<div class="title3 w-full">
+	<div class="title3 w-full">{lesgo()}
 		<div class="leftSide" />
 		<div class="rightSide"><span class="myText">JL Programming </span></div>
 	</div>

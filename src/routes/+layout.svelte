@@ -112,8 +112,8 @@ menuOver=true;
             <div class="absolute z-10 mt-2 w-56 origin-top -mt-1 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                  <div class="py-1 w-full hover:text-green" role="none">
                 <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-               <div class="w-full hover:bg-gray-200"> <a href="/article" class="relative text-gray-700 px-4 w-full py-3 " role="menuitem" tabindex="-1" id="menu-item-0">C++</a></div>
-               <div class="w-full hover:bg-gray-200">     <a href="#" class="block px-4 text-gray-700 py-2 text-sm " role="menuitem" tabindex="-1" id="menu-item-1">Web Dev</a></div>
+               <div class="w-full hover:bg-gray-200"> <a href="/articles/C++" class="relative text-gray-700 px-4 w-full py-3 " role="menuitem" tabindex="-1" id="menu-item-0">C++</a></div>
+               <div class="w-full hover:bg-gray-200">     <a href="/articles/WebDev" class="block px-4 text-gray-700 py-2 text-sm " role="menuitem" tabindex="-1" id="menu-item-1">Web Dev</a></div>
                 <div class="w-full hover:bg-gray-200">   <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Misc</a></div>
                
             </div>
