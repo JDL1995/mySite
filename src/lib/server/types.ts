@@ -33,11 +33,13 @@ export type modulator = {
     img: number[];
     html: number[];
 }
-export type modulator2 = {
+export type modulator201 = {
     isHtml:boolean;
     isImg:boolean;
     content:string;
+    picCaption:string;
 }
+export type modulator2 = Optional<modulator201,'picCaption'>;
 export type epicSubtitle = subtitle & {
 
 }
@@ -65,7 +67,7 @@ export type articleTitleList = {
     Titles: categoryTitle[];
     Headline: string;
 }
-export type categoryTitle = {
+export type categoryTitle2 = {
     Title: string;
     Author: string;
     Topic: string;
@@ -73,7 +75,9 @@ export type categoryTitle = {
     Contents: contentItem[];
     Summary: string;
     Img: string;
+    Color:string;
 }
+export type categoryTitle=Optional<categoryTitle2,'Color'>;
 export type contentItem = {
     Item: string;
 }
@@ -151,7 +155,8 @@ const awsec2Article: categoryTitle = {
     "Author": "Jonathan Lathrop",
     "Date": "03/17/23",
     "Summary": "A full tutorial on how to deploy a fully-fledged web application to the internet using a bare-bones aws instance and your own domain",
-    "Topic": "WebDev"
+    "Topic": "WebDev",
+    "Color":"black"
 }
 export const webDevArticles: articleTitleList = { "Titles": [webArtlist, awsec2Article], "Headline": "Web Dev Articles" }
 
@@ -170,19 +175,19 @@ export const awsec2: article = {
                     "Content": "Deploying an app is a big step.  Doing so on a 100% custom infrastructure(aka individually provisioned and outfitted ec2) is a great way to make this step.  It’s easy, smart, and beneficial.  However, it is certainly tempting with all of the hosting providers offering User-Interface based, developer-friendly, hassle saving, pre-configured environments to host your app.  Hey! Just pay for the domain, enter your details, pay a small fee, and then watch your app run on the web. These services do appeal to a large range of people, but not to me, and I’ll tell you why I prefer not to use them",
                     "Bullets": [
                         {
-                            "Content": "These services make you modify your application to fit their systems.",
+                            "Content": "You modify your application to fit their systems.",
                             "Html": [],
                             "Img": [],
                             "SubBullets": [
                                 {
-                                    "Content": "While it may not be a big deal that you’re changing a few small things (maybe a bit of directory structure, css files location, who knows), in the long run you are going to be isolating your development expertise in the broader scheme and jumping through more and more hoops to implement new features while staying on their platform",
+                                    "Content": "While it may not be a big deal, using less involved methods before you truly understand when to use them(besides just being easier), may hinder your development expertise in the broader scheme, lead to ultimately jumping through more and more hoops to implement new features while sticking to a platform",
                                     "Img": [],
                                     "Html": []
                                 }
                             ]
                         },
                         {
-                            "Content": "These options will not help you learn the bigger picture",
+                            "Content": "These options may not help you learn the bigger picture",
                             "Html": [],
                             "Img": [],
                             "SubBullets": [
@@ -196,15 +201,15 @@ export const awsec2: article = {
                     ]
                 },
                 {
-                    "Content": "Developing an app and configuring an EC2 provides unlimited flexibility, is great experience, and will make you a better developer",
+                    "Content": "Developing an app and configuring an EC2 provides unlimited flexibility, fits into many use cases, is great experience, and will make you a better developer",
                     "Bullets": [
                         {
-                            "Content": "By following these steps you are going to be the owner of your application in the closest sense possible in the cloud-era of computing. ",
+                            "Content": "Be the \"owner\" of your application in the closest sense possible in the cloud-era of computing. ",
                             "Html": [],
                             "Img": [],
                             "SubBullets": [
                                 {
-                                    "Content": "Making an app run on a linux machine means that if another cloud provider comes along with cheaper offerings, you will not have to modify your app(much) to work with their machines",
+                                    "Content": "Making an app run on a linux machine means that if another cloud provider comes along with cheaper or better offerings, you will not have to modify your app(much) to work with their system, because linux is the most common operating system in the world.",
                                     "Img": [],
                                     "Html": []
                                 },
@@ -218,7 +223,7 @@ export const awsec2: article = {
                     ]
                 },
                 {
-                    "Content": "This development more closely resembles what would be done in various parts of a large project. ",
+                    "Content": "This development is more universial and translates well to future projects. ",
                     "Bullets": [
                         {
                             "Content": "While the marketing is good and there are many use cases for newer increasingly-granular cloud-based services, ec2 is the most basic cloud service and is a great starting point which resembles the open-environment you may experience in the industry",
@@ -282,12 +287,14 @@ export const awsec2: article = {
                             "Img": [],
                             "SubBullets": [
                                 {
-                                    "Content": " to build your app use your cli to run npm build -prod (or whatever your framework tells you to run) and get the app in production ready form.",
+                                    "Content": " to build your app use your cli to run ^^^^ (or whatever your framework’s equivalent is) and get the app in production ready form.",
                                     "Img": [],
-                                    "Html": []
+                                    "Html": [
+                                        "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e npm build -prod\u003c/snippet\u003e\u003cbr\u003e"
+                                    ]
                                 },
                                 {
-                                    "Content": " there should be a generated folder with your files which will have an index.html in it",
+                                    "Content": " there should be a generated folder with your files which will have an index.html(among other things, such as minified js files and assets) in it",
                                     "Img": [],
                                     "Html": []
                                 }
@@ -305,8 +312,10 @@ export const awsec2: article = {
                     "Content": " You are going to need to go through a few steps to setup your ec2 instance",
                     "Bullets": [
                         {
-                            "Content": "make an aws account",
-                            "Html": [],
+                            "Content": "make an aws account. Navigate to ^^^^ ",
+                            "Html": [
+                                "\u003ca class=\"text-blue-600 underline\" href=\" https://portal.aws.amazon.com/billing/signup#/start/email\"\u003eaws-console-create-account\u003c/a\u003e"
+                            ],
                             "Img": [],
                             "SubBullets": []
                         },
@@ -317,55 +326,65 @@ export const awsec2: article = {
                             "SubBullets": []
                         },
                         {
-                            "Content": "configure a security group",
+                            "Content": "configure a security group- This essentially manages which ports are open to the internet on your ec2",
                             "Html": [],
                             "Img": [],
                             "SubBullets": [
                                 {
-                                    "Content": "all traffic on http port 80 in/out.  (this can be changed later for enabling ssl) ",
+                                    "Content": "all traffic on http port 80 in/out.  (can can be changed to 443 for https later if adding ssl) ",
                                     "Img": [],
                                     "Html": []
                                 },
                                 {
-                                    "Content": "all traffic both ways port 22 ssh",
+                                    "Content": "all traffic both ways port 22 ssh.  You can read more about security groups ^^^^",
                                     "Img": [],
-                                    "Html": []
+                                    "Html": [
+                                        "\u003ca class=\"text-blue-600 underline\" href=\" https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html\"\u003ehere\u003c/a\u003e"
+                                    ]
                                 }
                             ]
                         },
                         {
-                            "Content": "Make a security key and download it from the aws dashboard during instance setup",
+                            "Content": "Make a security key and download it from the aws dashboard when prompted during instance setup",
                             "Html": [],
                             "Img": [],
                             "SubBullets": [
                                 {
-                                    "Content": "^^^^",
+                                    "Content": "run:^^^^(this is necessary to use it, and is the permission level recomended by aws, due to default file permissions)",
                                     "Img": [],
                                     "Html": [
-                                        "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e run  chmod 400 keyname.pem.  this is necessary to use it \u003c/snippet\u003e\u003cbr\u003e"
+                                        "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e chmod 400 path/to/your/downloaded/keyname.pem. \u003c/snippet\u003e\u003cbr\u003e"
                                     ]
                                 },
                                 {
-                                    "Content": " this is important for security purposes so keep it handy and don’t share it with anyone",
+                                    "Content": "Remember: this is important for security purposes and neccesary so keep it handy, safe, and don’t share it with anyone",
                                     "Img": [],
                                     "Html": []
                                 }
                             ]
                         },
                         {
-                            "Content": " confirm and create your ec2 instance",
+                            "Content": "Confirm and create your ec2 instance",
                             "Html": [],
                             "Img": [],
                             "SubBullets": []
                         },
                         {
-                            "Content": "allocate an elastic I.p and associate it with your instance",
+                            "Content": "Allocate an elastic I.p and associate it with your instance.  ec2’s have changing i.p addresses by default, so this is a neccesary step to ensure your app will stay up",
                             "Html": [],
                             "Img": [],
-                            "SubBullets": []
+                            "SubBullets": [
+                                {
+                                    "Content": "After the ec2 intance is running, search in the aws console search bar for \"elastic i.p.\", then go to ^^^^",
+                                    "Img": [],
+                                    "Html": [
+                                        "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e ec2_elastic-ip-(click)-allocate_new_elastic_ip-(click); :my_elastic_ip-(click)-associate_with_instance-(click)-__your_new_instance-(click)\u003c/snippet\u003e\u003cbr\u003e"
+                                    ]
+                                }
+                            ]
                         },
                         {
-                            "Content": "go find the elastic i.p by searching and make a new one, then click the button to associate it with your ec2.  Now you have a constant I.p. address that won’t change for your ec2 instance",
+                            "Content": "Now you have a constant I.p. address that won’t change for your ec2 instance",
                             "Html": [],
                             "Img": [],
                             "SubBullets": []
@@ -376,25 +395,44 @@ export const awsec2: article = {
             "Bp": []
         },
         {
-            "Content": "Step 3: Configure network/domain",
+            "Content": "Step 3: Configure Network + Domain",
             "SubSubtitles": [
                 {
-                    "Content": "this one is pretty self explanatory: making the right configurations to have your domain able to serve the application",
+                    "Content": "Making the right configurations to have your domain able to serve the applications is a little bit of extra work some people sometimes try to avoid by using all-in-one hosting, but I believe that’s limiting the scope of your understanding, and portability of your precious hard work.",
                     "Bullets": [
                         {
-                            "Content": "Go to “Route 53” in aws console by searching, click “hosted zones”, and make a new hosted zone",
+                            "Content": "Go to “Route 53” in aws console by searching: \"route 53\", click “hosted zones”, and click \"make a new hosted zone\"",
                             "Html": [],
                             "Img": [],
                             "SubBullets": [
                                 {
-                                    "Content": "fill in the information for your domain, and include your ec2 i.p address",
+                                    "Content": "follow the steps to make your hosted zone. Firstly, add your domain you own in the \"name\", then after you create it, add an \"A\" record and make sure to include your ec2’s elastic i.p address in the field that says \"value, routes traffic to:\"",
+                                    "Img": [],
+                                    "Html": []
+                                },
+                                {
+                                    "Content": " You will have nameservers(NS) in your hosted zone like this: ****  Do whatever you like(screenshot, copy+paste, keep window open), but save them, because you’ll need these in the very next step. ",
+                                    "Img": [
+                                        "/name_servers.jpg"
+                                    ],
+                                    "Html": []
+                                }
+                            ]
+                        },
+                        {
+                            "Content": "Navigate to the provider’s where you own and manage your domain.",
+                            "Html": [],
+                            "Img": [],
+                            "SubBullets": [
+                                {
+                                    "Content": "Find the DNS settings and then click edit nameservers(you may have to select \"use custom dns\").",
                                     "Img": [],
                                     "Html": []
                                 }
                             ]
                         },
                         {
-                            "Content": "paste the 3-4 aws name servers from your hosted zone into the “name servers” field on your separate domain provider dashboard.  You might have to enable custom dns to find this option",
+                            "Content": "paste the 3-4 aws name servers from your hosted zone into the “nameservers” field on your separate domain provider dashboard. ",
                             "Html": [],
                             "Img": [],
                             "SubBullets": []
@@ -411,26 +449,38 @@ export const awsec2: article = {
                     "Content": "connect to your ec2 instance and transfer the Finished App",
                     "Bullets": [
                         {
-                            "Content": " using ^^^^you can connect your instance.  This information will be important later",
+                            "Content": " using ^^^^you can connect your instance.  This information will be very useful later and this likely will be something you will do frequently",
                             "Html": [
-                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e ssh -i  path/to/your/privatekey.pem  ec2-user@__your ec2   s elastic I.p__ \u003c/snippet\u003e\u003cbr\u003e"
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e ssh -i “path/to/your/privatekey.pem” ec2-user@your_ec2’s_elastic I.p\u003c/snippet\u003e\u003cbr\u003e"
                             ],
                             "Img": [],
-                            "SubBullets": []
+                            "SubBullets": [
+                                {
+                                    "Content": "if you’re getting Errors: \"access-denied\" - double check i.p, and user spellling. \"no key provided\"- double check you performed the correct permissions on the your_key.pem file.",
+                                    "Img": [],
+                                    "Html": []
+                                }
+                            ]
                         },
                         {
-                            "Content": "compress your build folder",
+                            "Content": "Compress your ready-to-go app’s built, prod folder. (techincally optional, but I prefer it, as it makes transfer much faster and simpler)",
                             "Html": [],
                             "Img": [],
                             "SubBullets": []
                         },
                         {
-                            "Content": "use a similar command to get your folder into the ec2.  ^^^^ ",
+                            "Content": "use the ssh scp command to get your folder into the ec2.  ^^^^ remember :/home/ec2-user is specific because other directories will likely not allow file transfer.  You can move them wherever you like afterwards",
                             "Html": [
-                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003eScp -i  path/to/key.pem     path/to/build/folder.zip  ec2-user@   elastic_ip  /home/ec2-user\u003c/snippet\u003e\u003cbr\u003e"
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e Scp -i “path/to/key.pem” “path/to/build/folder.zip” ec2-user@“elastic_ip”:/home/ec2-user\u003c/snippet\u003e\u003cbr\u003e"
                             ],
                             "Img": [],
-                            "SubBullets": []
+                            "SubBullets": [
+                                {
+                                    "Content": "make sure to get all the files/folders required for your production app to run (i.e build_prod, Backend_prod) transerred via this method.  Remember",
+                                    "Img": [],
+                                    "Html": []
+                                }
+                            ]
                         }
                     ]
                 }
@@ -447,35 +497,37 @@ export const awsec2: article = {
                     "Img": [],
                     "SubBullets": [
                         {
-                            "Content": "ssh into ec2 instance",
+                            "Content": "Ssh into ec2 instance",
                             "Img": [],
                             "Html": []
                         },
                         {
-                            "Content": "^^^^",
+                            "Content": "run: ^^^^",
                             "Img": [],
                             "Html": [
-                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003erun  sudo amazon-linux-extras enable epel\u003c/snippet\u003e\u003cbr\u003e"
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e sudo amazon-linux-extras enable epel\u003c/snippet\u003e\u003cbr\u003e"
                             ]
                         },
                         {
-                            "Content": "^^^^",
+                            "Content": "run: ^^^^",
                             "Img": [],
                             "Html": [
-                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003erun  sudo yum install epel-release\u003c/snippet\u003e\u003cbr\u003e"
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e sudo yum install epel-release\u003c/snippet\u003e\u003cbr\u003e"
                             ]
                         },
                         {
-                            "Content": "^^^^",
+                            "Content": "run: ^^^^",
                             "Img": [],
                             "Html": [
-                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003erun  sudo yum install nginx \u003c/snippet\u003e\u003cbr\u003e"
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e sudo yum install nginx \u003c/snippet\u003e\u003cbr\u003e"
                             ]
                         },
                         {
-                            "Content": "to verify install, run: nginx -v ",
+                            "Content": "to verify install, run: ^^^^",
                             "Img": [],
-                            "Html": []
+                            "Html": [
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e nginx -v \u003c/snippet\u003e\u003cbr\u003e"
+                            ]
                         }
                     ]
                 },
@@ -490,26 +542,32 @@ export const awsec2: article = {
                             "Html": []
                         },
                         {
-                            "Content": "run: sudo yum install gcc-c++ make ",
-                            "Img": [],
-                            "Html": []
-                        },
-                        {
-                            "Content": "^^^^",
+                            "Content": "run:^^^^",
                             "Img": [],
                             "Html": [
-                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e run  curl -sL https //rpm.nodesource.com/setup_16.x sudo -E bash - \u003c/snippet\u003e\u003cbr\u003e"
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e sudo yum install gcc-c++ make \u003c/snippet\u003e\u003cbr\u003e"
                             ]
                         },
                         {
-                            "Content": "run: sudo yum install nodejs ",
+                            "Content": "run:^^^^",
                             "Img": [],
-                            "Html": []
+                            "Html": [
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash -  \u003c/snippet\u003e\u003cbr\u003e"
+                            ]
                         },
                         {
-                            "Content": "verify installation- run: node -v ",
+                            "Content": "run: ^^^^",
                             "Img": [],
-                            "Html": []
+                            "Html": [
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e sudo yum install nodejs \u003c/snippet\u003e\u003cbr\u003e"
+                            ]
+                        },
+                        {
+                            "Content": "verify installation- run: ^^^^",
+                            "Img": [],
+                            "Html": [
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e node -v \u003c/snippet\u003e\u003cbr\u003e"
+                            ]
                         }
                     ]
                 },
@@ -519,10 +577,10 @@ export const awsec2: article = {
                     "Img": [],
                     "SubBullets": [
                         {
-                            "Content": "^^^^",
+                            "Content": "run:^^^^",
                             "Img": [],
                             "Html": [
-                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e run  npm install -g pm2\u003c/snippet\u003e\u003cbr\u003e"
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e npm install -g pm2\u003c/snippet\u003e\u003cbr\u003e"
                             ]
                         }
                     ]
@@ -541,17 +599,19 @@ export const awsec2: article = {
                             "Img": [],
                             "SubBullets": [
                                 {
-                                    "Content": " run: vim etc/nginx/nginx.conf (if you have never used vim, then look it up)",
+                                    "Content": "run:^^^^ (if you have never used vim, then look up basic vim commands on google, will only take a few minutes at most)",
+                                    "Img": [],
+                                    "Html": [
+                                        "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e vim etc/nginx/nginx.conf\u003c/snippet\u003e\u003cbr\u003e"
+                                    ]
+                                },
+                                {
+                                    "Content": "here we are passing the frontend’s api requests to the backend server on port 3000 via proxy_pass",
                                     "Img": [],
                                     "Html": []
                                 },
                                 {
-                                    "Content": "here we are passing the requests to the backend server on port 3000 via proxy_pass",
-                                    "Img": [],
-                                    "Html": []
-                                },
-                                {
-                                    "Content": "your Nginx.conf file should look like this(assuming your backend Is running on port 3000) ****",
+                                    "Content": "your Nginx.conf file should look much like this****(assuming your backend Is running on port 3000) ",
                                     "Img": [
                                         "/nginxconf.jpg"
                                     ],
@@ -568,16 +628,16 @@ export const awsec2: article = {
             "Content": "Step 7: Configure the DB",
             "SubSubtitles": [
                 {
-                    "Content": " depending on the needs of your app you may or may not be using a database.  If so there are a few steps to take. ",
+                    "Content": " You may be using a database.  Cloud-based or locally running.  Read this to assist you in that process. ",
                     "Bullets": [
                         {
-                            "Content": "Two options for mid size apps are: better_sqlite3 which is an npm package and runs with the node server(no need to “configure” an external database or deal with connection strings), and mongodb.",
+                            "Content": "Two mention worthy options for mid size apps are: better_sqlite3 which is an npm package and runs within the node server(no need to “configure” an external database or deal with connection strings), and mongodb. ",
                             "Html": [],
                             "Img": [],
                             "SubBullets": []
                         },
                         {
-                            "Content": "   If you are using mongodb then you can follow this convenient document to install it on your ec2 instance  ^^^^",
+                            "Content": " If you are using mongodb then you can follow this convenient document to install it on your ec2 instance: ^^^^",
                             "Html": [
                                 "\u003ca class=\"text-blue-600 underline\" href=\" https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-amazon/\"\u003emongodb-amazon\u003c/a\u003e"
                             ],
@@ -585,7 +645,13 @@ export const awsec2: article = {
                             "SubBullets": []
                         },
                         {
-                            "Content": "from this point you will configure the db just like you would normally",
+                            "Content": " IF you are using a cloud-based database, read the database docs and make sure that the security group allows traffic ONLY with the DATABASE i.p and ONLY on the specific port.",
+                            "Html": [],
+                            "Img": [],
+                            "SubBullets": []
+                        },
+                        {
+                            "Content": "from this point you will configure the db just like you would normally.",
                             "Html": [],
                             "Img": [],
                             "SubBullets": []
@@ -596,15 +662,44 @@ export const awsec2: article = {
             "Bp": []
         },
         {
-            "Content": "step 8: Run your app",
+            "Content": "step 8: Security",
             "SubSubtitles": [
                 {
-                    "Content": "you’ve come all this way and now the time has come to start your app!  Don’t be discouraged if there are a couple of bugs, you will work them out by debugging(the last step)",
+                    "Content": " before you open up your project to the world wide web, you need to make a few IMPORTANT checks.",
                     "Bullets": [
                         {
-                            "Content": "^^^^",
+                            "Content": "ONLY open up neccesary ports",
+                            "Html": [],
+                            "Img": [],
+                            "SubBullets": []
+                        },
+                        {
+                            "Content": "Do NOT do anything you could think might be unsafe or could possibly exploit your program",
+                            "Html": [],
+                            "Img": [],
+                            "SubBullets": []
+                        }
+                    ]
+                }
+            ],
+            "Bp": []
+        },
+        {
+            "Content": "step 9: Run your app",
+            "SubSubtitles": [
+                {
+                    "Content": "you’ve come all this way and now the time has come to start your app! Don’t be discouraged if there are a couple of bugs, you will work them out by debugging(the last step)",
+                    "Bullets": [
+                        {
+                            "Content": "Come back to this step after you have done the next step, Debugging, because this will make debugging slightly more challenging",
+                            "Html": [],
+                            "Img": [],
+                            "SubBullets": []
+                        },
+                        {
+                            "Content": "run: ^^^^",
                             "Html": [
-                                '\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e run  pm2 start ./build/index.js \u003c/snippet\u003e\u003cbr\u003e'
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e  pm2 start ./build/index.js \u003c/snippet\u003e\u003cbr\u003e"
                             ],
                             "Img": [],
                             "SubBullets": [
@@ -639,9 +734,9 @@ export const awsec2: article = {
                     "Content": "you may find that your app is encountering some issue on the production deployment: perhaps the home page gives an nginx 404 not found, or perhaps the backend is crashing, we will be able to trace and solve all of this",
                     "Bullets": [
                         {
-                            "Content": "to debug the backend  run  ^^^^ in one terminal and open another to do things like restart nginx  sudo systemctl restart nginx  ",
+                            "Content": "to debug the backend, run: ^^^^ in one terminal and open another to do things like restart nginx (sudo systemctl restart nginx) ",
                             "Html": [
-                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e   DEBUG express * node server.js   \u003c/snippet\u003e\u003cbr\u003e"
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e“DEBUG=express:* node server.js”\u003c/snippet\u003e\u003cbr\u003e"
                             ],
                             "Img": [],
                             "SubBullets": [
@@ -665,15 +760,15 @@ export const awsec2: article = {
                             ]
                         },
                         {
-                            "Content": "to view the nginx error logs run ^^^^",
+                            "Content": "to view the nginx error logs run:^^^^",
                             "Html": [
-                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e  sudo tail -f /var/log/nginx/error.log   \u003c/snippet\u003e\u003cbr\u003e"
+                                "\u003cbr\u003e\u003cdiv class=\"snippet\"\u003e ‘sudo tail -f /var/log/nginx/error.log’\u003c/snippet\u003e\u003cbr\u003e"
                             ],
                             "Img": [],
                             "SubBullets": []
                         },
                         {
-                            "Content": " I recommend debugging the backend and using the developer console in the browser first before viewing nginx logs, unless you are getting an nginx 404 error",
+                            "Content": " I recommend debugging the backend and using the developer console in the browser first before viewing nginx logs, unless you are getting an nginx 500, 404, etc. error",
                             "Html": [],
                             "Img": [],
                             "SubBullets": []
@@ -699,8 +794,9 @@ export const awsec2: article = {
     "Topic": "Web Dev",
     "Date": "03/17/23",
     "Img": "/awsec2.png",
-    "Gif":"/giphy.gif"
-};
+    "Gif": "/Giphy.Gif"
+}
+
 export function jewish(a1:article|null){
 var new1:string[]=[];
 if(a1){

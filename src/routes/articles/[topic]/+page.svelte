@@ -11,7 +11,7 @@
         let navstring=data.topic+"/"+title;
         goto(navstring)
     }
-    const imgUrl1 = new URL('@/lib/assets/img/', import.meta.url).href
+    const imgUrl1= new URL('@/lib/assets/img', import.meta.url).href;
     let myurl="../../src/goodbg.jpg"
     export function renderTitle(){
         if(data.topic=="C++"){
@@ -20,6 +20,8 @@
     } 
   export function renderImgUrl(data:string){
         let imgUrl = imgUrl1+data
+        console.log("suck it",imgUrl)
+
         return imgUrl
         }
 </script>
@@ -35,19 +37,48 @@
         </div>
   {#each data.titleList.Titles as title, i}
     <div class="grid grid-row specheight justify-center w-full mt-7">
-  <div on:click={()=>navigateToArticles(title.Title)} class="title7 ">
-        <div class="bg-black grid grid-cols-1 w-2/5 h-100 mr-0 text-white" style="background-image:url({renderImgUrl(title.Img)}); background-size:100% 100%">
-            <div class="w-full grid grid-cols-1">
-                <div class="h=1/3"></div>
+  <div on:click={()=>navigateToArticles(title.Title)} class="title7 "> 
+    {#if title.Color}
+    <div class="w-2/5 h-full">     
+        <div class="bg-black grid grid-cols-1 w-full h-full mr-0 text-white" style="background-image:url({renderImgUrl(title.Img)}); background-size:100% 100%">
+              
+                <div class="w-full grid grid-cols-1">  
+       
+                <div class="h=1/2"></div>
                 <span class="myText7 text-xl text-center text-white">
-                    {title.Title}{@html mytext}
+                    {title.Title}
+                </span>
+   
+                  
+                   </div>
+                
+         </div>
+                    <ul class=" mb-0 articletop2 bg-{title.Color} text-white"><li class="topic2 ml-0">{title.Topic}</li><li class="author2 ml-5 text-white">{title.Author}</li><li class="published2 ml-5 text-white">{title.Date}</li>
+                    </ul>
+             
+              
+               
+      
+                </div>
+             {:else}   
+             <div class="bg-black grid grid-cols-1 w-2/5 h-100 mr-0 text-white" style="background-image:url({renderImgUrl(title.Img)}); background-size:100% 100%">
+
+             <div class="w-full grid grid-cols-1">  
+       
+                <div class="h=1/2"></div>
+                <span class="myText7 text-xl text-center text-white">
+                    {title.Title}
                 </span>
                 <span class="text-white">
+             
                     <ul class="articletop2 text-white"><li class="topic2 ml-0">{title.Topic}</li><li class="author2 ml-5 text-white">{title.Author}</li><li class="published2 ml-5 text-white">{title.Date}</li>
                     </ul>
-                </span>
+               
+                </span>   
+                    
              </div>
-        </div>
+                   
+        </div> {/if}
         <div class="bg-black grid grid-cols-1 w-3/5 h-100 mr-0 text-white">
             <div class="flex flex-col justify-center">
                     <span class="rightside7 text-center text-white mt-1">{title.Summary}</span>

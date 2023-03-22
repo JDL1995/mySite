@@ -25,7 +25,7 @@ function getIndicesOf(searchStr:string, str:string, caseSensitive:boolean) {
         indices.push(index);
         startIndex = index + searchStrLen;
     }
-    console.log('ohml: ',indices)
+
     return indices;
 }
 
@@ -36,7 +36,7 @@ function getImg_Html(str:string){
     HtmlIndexes=getIndicesOf("^^^^",str,false);
     let toRet:modulator={html:HtmlIndexes,img:ImgIndexes};
 	if(HtmlIndexes.length!=0){
-		console.log("okeyy");
+
 	}
    // console.log("toret here, ",toRet)
     return toRet;
@@ -46,19 +46,15 @@ function subify(content:string, html:string[],img:string[]){
     let newMod:modulator=getImg_Html(content);
     var i = newMod.html.length;
     var j=newMod.img.length;
-    console.log("i and j:",i,j)
-    console.log("ceral")
+ 
     let newDivs:modulator2[]=[];
     let stringPos=0;
     if(html.length!=0){
-    if(html[0].search("<a")!=-1){
-        console.log("i and j:",i,j,"\n","newMod: ",newMod);
-    }
+   
 }
 	//if(content==)
     while((newMod.img.length==0&&newMod.html.length==0)==false){
-        console.log("newMod here, ",newMod);
-        if(html.length!=0){console.log("barnacle: ",content)}
+
         if((newMod.html.length!=0 &&newMod.img.length!=0)==true){
         if(newMod.html[0]<newMod.img[0]){
         let newstr=content.substring(stringPos,newMod.html[0]);
@@ -82,15 +78,12 @@ function subify(content:string, html:string[],img:string[]){
         }
         }
         else if(newMod.html.length!=0){
-			console.log("htmml.l!=0")
+			
             let newstr=content.substring(stringPos,newMod.html[0]);
             stringPos=newMod.html[0]+5;
         let newModulator:modulator2={isHtml:false,isImg:false,content:newstr}
         newDivs.push(newModulator);
-        if(html[0]==undefined){
-            console.log("awoooga");
-            console.log(content);
-        }
+     
         let newItem:modulator2={isHtml:true,isImg:false,content:html[0]}
             newDivs.push(newItem);
             html.shift()
@@ -112,7 +105,7 @@ function subify(content:string, html:string[],img:string[]){
         let finalModulator:modulator2={isHtml:false,isImg:false,content:final};
         newDivs.push(finalModulator);
     }
-    console.log("newdivs here",newDivs);
+ 
 	return newDivs
     //const renderer= new renderImgUrl(data);
     /**<li class="li2"> {#if sb.Html}{subify(sb.Content,sb.Html)}
@@ -139,9 +132,7 @@ async function loadAll(Article:article){
     return a;}else return null} ).filter(st=>st);
 
 
-    console.log("yes!?");
-    console.log(filtered2);
-    console.log("selected",selectedAnimals)
+    
     var myarr: bulletpoint[][]=[];
     var r2:bulletpoint[]=[];
     let new1
@@ -149,9 +140,9 @@ async function loadAll(Article:article){
    selectedAnimals.forEach(st=>{
     
     st!.item.forEach((val:bulletpoint,index)=>{
-        console.log("mahgerd?",val)
+      
         if(val.Html.length!=0 || val.Img.length!=0){
-            console.log("mahgerd?")
+
             let new01:modulator2[]=subify(val.Content,val.Html,val.Img);
             let new1={st:st!?.index,sst:60,bp:index,sbp:60,stuff:new01}
             articleCT2.push(new1)
@@ -161,7 +152,7 @@ async function loadAll(Article:article){
             val.SubBullets.forEach((sb,indie)=>{
                 if(sb.Html.length!=0||sb.Img.length!=0)
                 {
-                    console.log("subifyingouter, ",sb.Html)
+                   
             let new01:modulator2[]=subify(sb.Content,sb.Html,sb.Img);
             let new1={st:st!?.index,sst:60,bp:index,sbp:indie,stuff:new01}
             articleCT2.push(new1);
@@ -172,12 +163,7 @@ async function loadAll(Article:article){
     },articleCT2)
    
    },articleCT2)
-   console.log("jeebus",articleCT2)
-   
 
-    
-   console.log("yes!?");
-   console.log(r2);
     let undm=Article;
     let articleCT:articleContent[]=articleCT2;
    let a=0;
@@ -191,7 +177,7 @@ async function loadAll(Article:article){
         if(st.Bp.length>0){
     for (const bp1 of st.Bp){
         if((bp1.Html.length!=0) || (bp1.Img.length!=0)){
-            console.log("found containing: ",bp1)
+    
             let myThing:modulator2[]= subify(bp1.Content,bp1.Html,bp1.Img)
             let myct:articleContent={st:a,sst:60,bp:c,sbp:60,stuff:myThing};
             articleCT.push(myct)
@@ -200,9 +186,9 @@ async function loadAll(Article:article){
     var zed=0;
     for(const sbp1 of bp1.SubBullets){
         if((sbp1.Html.length!=0) || (sbp1.Img.length!=0)){
-            console.log("found containing: ",sbp1)
+           
             let myThing:modulator2[]= subify(sbp1.Content,sbp1.Html,sbp1.Img)
-            console.log("hee",myThing)
+
             let myct:articleContent={st:a,sst:60,bp:c,sbp:zed,stuff:myThing};
             articleCT.push(myct)
         }
@@ -219,17 +205,17 @@ async function loadAll(Article:article){
          for (const bp of subSubtitle.Bullets){
             if((bp.Html.length!=0) || (bp.Img.length!=0)){
            
-                console.log("found containing: 3x",bp)
+               
                 let myThing:modulator2[]= subify(bp.Content,bp.Html,bp.Img)
                 let myct:articleContent={st:a,sst:b,bp:c,sbp:60,stuff:myThing};
-                console.log("now showing ac for myct",myct);
+             
                 articleCT.push(myct)
             }
             d=0;
             for(const subBullet of bp.SubBullets){
           
             if((subBullet.Html.length!=0) || (subBullet.Img.length!=0)){
-                console.log("holy nigeria, ", subBullet.Content)
+      
               
                // console.log("subifyingouter, ",getOuter(subBullet.Html))
                 let myThing2:modulator2[]=subify(subBullet.Content,subBullet.Html,subBullet.Img);
@@ -260,10 +246,8 @@ let selectedAnimals2:articleContent[] = articleCT.map((ct,t):articleContent => {
         })
    }
 return ct}).filter(ct=>ct);
-    let difference = articleCT.filter(x => !selectedAnimals2.includes(x));
-    console.log("big kahoona \n",difference,"\n",selectedAnimals2?.length,"\n",articleCT.length);
+ //   let difference = articleCT.filter(x => !selectedAnimals2.includes(x));
 
-console.log("sup: ",articleCT,". a is: ",a);
 const r:articleContentPlus={ac:selectedAnimals2,article:undm}
 
 return new Promise<articleContentPlus>((resolve)=>{resolve(r)});
@@ -277,6 +261,20 @@ async function wedone(topic:string,name:string){
     
 
     return ba;
+
+}
+
+async function getShowlist(topic:string,name:string){
+    let fa= await getArticle2(topic,name);
+    var accordionlist:{[key: number]:boolean}= {};
+   var  mylist=fa.Subtitles.map((st,i)=>{
+    let a={mynum:i,mybool:false}
+    return a;
+   })
+   mylist.forEach(val=>{
+    accordionlist[val.mynum]=val.mybool
+   })
+   return accordionlist;
 
 }
 /*
@@ -297,6 +295,7 @@ export const load:PageServerLoad = (({params})=>{
     const ArticleTitle=params.title;
 const Article=getArticle(params.topic,ArticleTitle);
 const promise=wedone(params.topic,ArticleTitle);
+const showList=getShowlist(params.topic,ArticleTitle);
 const imgUrl1= new URL('@/lib/assets/img', import.meta.url).href;
 
 //const niggeeria=fuck(params.topic,params.title)
@@ -310,7 +309,8 @@ return {
     Article,
     ArticleTitle,
     promise:promise,
-    myUrl:imgUrl1
+    myUrl:imgUrl1,
+    showList:showList
     //fuck:niggeeria
     //Comments
 };

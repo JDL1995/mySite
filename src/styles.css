@@ -18,7 +18,9 @@
     height:auto;
     background-color: grey;
     text:black;
-    font-size:x-large;
+    margin-top:-5px;
+    font-size: clamp(.6rem, -0.875rem + 3.333333vw, .99rem);
+    
 }
 .title3{
     background-color: white;
@@ -26,7 +28,7 @@
     left:auto;
     right:auto;
     top:15%;
-    height: 20vh;
+    height: 25vh;
     display:flex;
     border:2px solid black;
     position:relative;
@@ -105,11 +107,11 @@
     align-items: center;
 }
 .carousel2{
-    background-image: url('./future1.jpg');
+    background-image: url('lib/assets/img/awsec2.png');
     height:40vh;
     width:90%;
     position: relative;
-    background-size:cover;
+    background-size:100% 100%;
     display:flexbox;
     justify-content: center;
     align-items: center;
@@ -197,7 +199,7 @@
     position:relative;
     vertical-align: middle;
     left:50%;
-    font-size:150%;
+    font-size: clamp(.9rem, -0.875rem + 4.333333vw, 2.5rem);
     transform:translate(-50%);
     font-family: 'Russo One', sans-serif;
 }
@@ -212,12 +214,13 @@
 }
 .topic{
     color:orange;
+    line-height:3vmin;
    
 }
 .topic::before {
     font-weight:900;
     font-family: 'Font Awesome 6 Free';
-    font-size: 12pt;
+    font-size: clamp(.8rem, -0.875rem + 3.333333vw, 1.5rem);
     position: absolute;
     left:10px;
        top:0.19rem;
@@ -248,23 +251,27 @@
    
    }
    .author{
+    line-height:3vmin;
     color:black;
    
 }
 .published{
-    
+    line-height:3vmin;
    
 }
 .published::before {
     font-weight:900;
     font-family: 'Font Awesome 6 Free';
-    font-size: 12pt;
+    font-size: clamp(.8rem, -0.875rem + 3.333333vw, 1.5rem);
     position: absolute;
     left:10px;
+    margin-right:12vw;
+    margin-left:-.5vw;
        top:0.19rem;
     color: black;
     /* change icon code here */
     content: '\f073';
+    padding-right:5vw;
     /* optional animation */
    
    }
@@ -292,11 +299,11 @@
    
 }
 .snippet{
-    width:max(50vw);
+    width:max(75vw);
     height:auto;
     background-color: grey;
-    text:white !important;
-
+text-align:center;
+    color:white;
 }
 .articlePic{
     width:60vw;
@@ -325,7 +332,7 @@
 .author::before {
     font-weight:900;
     font-family: 'Font Awesome 6 Free';
-    font-size: 12pt;
+    font-size: clamp(.8rem, -0.875rem + 3.333333vw, 1.5rem);
     position: absolute;
     left:10px;
        top:0.19rem;
@@ -459,23 +466,26 @@
     
 }
 .majorSubsection{
-  
+    margin-top: 3%;
     height:auto;
     left:2.5%;
     display:flexbox;
     justify-content: center;
+    padding-bottom:10px;
     width:100%;
     position:relative;
     color:black;
+    border:solid grey;
 }
 .subtitle{
         /* Renamed property in CSS3 draft spec */
     width: 100%;
     display:flex;
+    padding-bottom:15px;
     justify-content: center;
     position:relative;
     color:black;
-    font-size:200%;
+    font-size: clamp(1.0rem, -0.875rem + 4vw, 1.9rem);
    
   
     
@@ -495,7 +505,10 @@
     left:0;
     color:black;
     display:flexbox;
-    font-size:150% !important;
+
+    position: relative;
+    padding-left: 1.62rem;
+    font-size: clamp(.9rem, -0.875rem + 1vw, 1.3rem);
 }
 .subBullets{
     left:-5%;
@@ -519,16 +532,23 @@ ul {
    li {
     position: relative;
     padding-left: 1.62rem;
+    font-size: clamp(.6rem, -0.875rem + 3.333333vw, 1.21rem);
+ 
    }
    .li1{
+    position: relative;
+    padding-left: 1.62rem;
+    font-size: clamp(.8rem, -0.875rem + 4vw, 1.1rem);
 
    }
    .li2{
+    
 padding-left: 2.6rem;
+font-size: clamp(.6rem, -0.875rem + 3.333333vw, .99rem);
    }
    .li1::before {
     font-family: 'Font Awesome 6 Free';
-    font-size: 12pt;
+    font-size: clamp(.8rem, -0.875rem + 4vw, 1.1rem);
     position: absolute;
        top:0.19rem;
     left: 0;
@@ -544,7 +564,7 @@ padding-left: 2.6rem;
    .li2::before {
     font-weight:900;
     font-family: 'Font Awesome 6 Free';
-    font-size: 12pt;
+    font-size: clamp(.6rem, -0.875rem + 3.333333vw, .99rem);
     position: absolute;
        top:0.19rem;
     left: 10px;

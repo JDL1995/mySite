@@ -48,14 +48,15 @@ console.log(myx);}
 						{#if browser}
 							{(console.log('yay'), '')}
 							<Carousel class="carousel" bind:this={carousel}>
+								<div class="carousel2">
+									<div class="text-center text-lg">Deploy Nodejs on aws ec2 with nginx</div>
+									<a class="me" href="/articles/WebDev/Deploy an Angular(or other) application with AWS EC2,NGINX, and pm2"><div class="readNow my-1">Read Now</div></a>
+								</div>
 								<div class="carousel1">
 									<div class="text-center text-lg">Getting Started With C++</div>
-									<a class="me" href="/article"><div class="readNow my-1">Read Now</div></a>
+									<a class="me" href="/articles/C++/Getting Started With C++"><div class="readNow my-1">Read Now</div></a>
 								</div>
-								<div class="carousel2">
-									<div class="text-center text-lg">Coming Soon</div>
-									<a class="me" href="/article"><div class="readNow my-1">Read Now</div></a>
-								</div>
+							
 								<div class="carousel3">
 									<div class="text-center text-lg">Coming Soon</div>
 									<a class="me" href="/article"><div class="readNow my-1">Read Now</div></a>

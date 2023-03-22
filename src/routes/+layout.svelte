@@ -36,8 +36,6 @@ let navDropdownTitles=[{title:"Articles"}]
 menuOver=true;
   }
   function onLeave(item:string) {
-    
-   
   hoverText=item;
   }
   function onLeaveMenu(item:string){
@@ -73,11 +71,10 @@ menuOver=true;
         class="w-full text-white container px-6 py-8 mx-auto flex justify-between items-stretch"
       >
       <div class="text-white flex w-full">
-        <div class="w-1/3 ">
+        <div class="w-1/3">
           <a
             class="text-xl text-white float-left font-bold text-gray-800 md:text-2xl hover:text-blue-400"
-            href="/"
-            >JLProgramming
+            href="/">JLProgramming 
           </a>
           <!-- Mobile menu button -->
           

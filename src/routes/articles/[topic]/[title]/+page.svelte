@@ -2,25 +2,26 @@
 	import '../../../../styles.css';
 	import '../../../../css/all.css';
 	import type { PageData } from '../../../$types';
+	import type { accordionList } from './+page.server';
 	export let data: PageData;
 	export let pc:articleContent[]=data.promise.ac;
+	export let accordion:{[key: number]:boolean}=data.showList;
 	//export let promise:Promise<articleContentPlus>;
 
 		
 	import type { article, articleContent, articleContentPlus, modulator, modulator2 } from '../../../../lib/server/types';
 	import type { subtitle } from '../../../../lib/server/types';
-	import { object_without_properties, onMount } from 'svelte/internal';
+	import { identity, object_without_properties, onMount } from 'svelte/internal';
+
 	//import renderImgUrl from '../+page.svelte';
 	const imgUrl0= new URL('@/lib/assets/img', import.meta.url).href;
-	let imgUrl1:URL;
+	let contentsopen=false;
   export function renderImgUrl(data2:string){
-	
         let imgUrl = imgUrl0+data2
         return imgUrl
         }
 		export function renderImgUrl2(data2:string){
-			const imgUrl3= new URL('@/lib/assets/img', import.meta.url).href;
-
+	const imgUrl3= new URL('@/lib/assets/img', import.meta.url).href;	
 	let imgUrl = imgUrl3+data2
 	return imgUrl
 	}
@@ -37,7 +38,7 @@ function doIt(str:string,html:string[],img:string[]){
 //promise=subify(str,html,img);
 const mys="^^^^lapodoo";
 let myx=mys.search("^^^^");
-console.log(mys);
+
 }
 
 
@@ -97,7 +98,6 @@ return jewishreturn2[0].stuff
 }
 
 else{
-	console.log("error: ", st," sst",sst," bp,",bp," sbp",sbp," and pc: ",pc)
 	return jewishreturn//jewishreturn2[0].stuff;
 }
 }
@@ -106,11 +106,8 @@ function grabCorrect2(ct:articleContent[],st:number,sst:number,bp:number):modula
 	let jewishreturn:modulator2[]=[];
 	ct.forEach((ac,a)=>{
 		if(ac.st==st){
-			console.log("niggeria")
 			if(ac.sst==sst){
-				console.log("niggeria2")
 				if(ac.bp==bp){
-					console.log("niggeria3")
 					
 				
 				}
@@ -122,7 +119,7 @@ function grabCorrect2(ct:articleContent[],st:number,sst:number,bp:number):modula
 
 	})
 
-	if(r==false){console.log("error: ", st," sst",sst," bp,",bp," sbp",sbp," and pc: ",ct)}
+
 
 if(jewishreturn.length==0){
 return ct[0].stuff
@@ -130,56 +127,48 @@ return ct[0].stuff
 else return jewishreturn;
 
 }
-function grabCorrect3(ct:articleContent[],st:number,sst:number,bp:number):modulator2[]{//st with bp
-	let r=false
-	let jewishreturn:modulator2[]=[];
-	sst=60;
-//sbp=60;
-	ct.forEach((ac,a)=>{
-		if(ac.st==st){
-			console.log("niggeria")
-			if(ac.sst==sst){
-				console.log("niggeria2")
-				if(ac.bp==bp){
-					console.log("niggeria3")
-				}
-				if(ac.sbp==60){
-					jewishreturn=ac.stuff
-				}
-			}
-		}
 
-	})
-
-	//if(r==false){console.log("error: ", st," sst",sst," bp,",bp," sbp",sbp," and pc: ",ct)}
-
-if(jewishreturn.length==0){
-return ct[0].stuff
-}
-else return jewishreturn;
-
-}
 export async function setPC(dta:articleContent[]){
 	pc=dta;
-	console.log("monkeynigro")
 	return dta;
 }
-export function setUrl(myurl:URL){
-imgUrl1=myurl
-}
+
 export function checker(dta:articleContent[]){
 	var i=0;
 	for(const a of dta){
-		console.log("I: ",i,".  ac: ",a);
 		i++;
 	}
 	
 	
 }
+function show(a:number){
+
+	if(accordion[a]==true){
+		return true;
+	}else{
+		return false;
+	}
+	}
+	function showIt(a:number){
+
+
+	if(accordion[a]==true){
+		accordion[a]=false;
+	}else{
+		accordion[a]=true;
+	}
+	}
+function openContents(){
+	if (contentsopen==false){
+		contentsopen=true;
+	}
+	else{
+		contentsopen=false
+	}
+}
 onMount(async () => {
 		// const apc = await data.promise
 	//	const pc=apc.ac;
-		 console.log("myshii",pc)
 	});
 		
 </script>
@@ -191,34 +180,52 @@ onMount(async () => {
 <div class="container4">
 	<div class="title3 w-full">
 		<div style="background-image:url({renderImgUrl(data.Article?.Img)}); background-size:100% 100%; background-repeat:no-repeat " class="leftSide2" />
-		<div class="w-2/3 grid grid-cols-1"><span class="myText2 text-xl text-center">{data.Article.Title}</span>
-            <span class="text-black"><ul class="articletop"><li class="topic ml-5">{data.Article.Topic}</li><li class="author ml-5 text-black">{data.Article.Author}</li><li class="published ml-5 text-black">{data.Article.Date}</li></ul></span></div>
+		<div class="w-2/3 grid grid-cols-1"><span class="myText2 text-center">{data.Article.Title}</span>
+            <div class="text-black w-full h-auto"><ul class="articletop"><li class="topic ml-5">{data.Article.Topic}</li><li class="author ml-5 text-black">{data.Article.Author}</li><li class="published ml-5 text-black">{data.Article.Date}</li></ul></div></div>
 	</div>
 </div>
 <div class="mainBody">
 	<div class="container2">
-		<div class="articleTitle">Table of Contents:</div>
-		<div class="linkToSections">
-			{#each data.Article.Subtitles as subtitles, i}
-				<a href="#{i}" class="contentsLinks"><div class="show">{subtitles.Content}</div></a><br />
-			{/each}
-		</div>
+		<div class="relative mb-3">
+			<h6 class="mb-0">
+			  <button on:click={()=>openContents()}
+				class="border-slate-100 text-slate-700 rounded-t-1 group relative flex w-full cursor-pointer items-center border-b border-solid p-4 text-left font-semibold text-dark-500 transition-all ease-in"
+				data-collapse-target="collapse-1"
+			  >
+			  <div class="articleTitle">Table of Contents:</div>
+				<i class="fa fa-plus absolute right-0 pt-1 text-xs group-open:opacity-0"></i>
+				<i class="fa fa-minus absolute right-0 pt-1 text-xs opacity-0 group-open:opacity-100"></i>
+			  </button>
+			</h6>
+			{#if contentsopen}
+			<div
+			 
+			  class="h-auto overflow-hidden transition-all duration-300 ease-in-out"
+			>
+			   <div class="linkToSections">
+					  {#each data.Article.Subtitles as subtitles, i}
+						  <a href="#{i}"on:click={()=>showIt(i)} class="contentsLinks"><div class="show">{subtitles.Content}</div></a><br />
+					  {/each}
+				  </div>
+			</div> 
+			 {/if}
+		  </div>
+		
 		<div class="articleBody">
 			{#each data.Article.Subtitles as subtitles2, j}
 				<div class="majorSubsection" id={j.toString()}>
-					<div class="subtitle"><p class="sub font-bold">{subtitles2.Content}</p></div>
+					<div class="subtitle" on:click={()=>showIt(j)}><p class="sub font-bold">{subtitles2.Content}</p>  {#if accordion[j]} <i class="fa fa-chevron-down absolute right-0 pt-1 text-base transition-transform"></i>{:else}<i class="fa fa-chevron-down absolute right-0 pt-1 text-base transition-transform rotate-180"></i>{/if}</div>
+					{#if accordion[j]}
 					<div class="holdBullets">
 							{#each subtitles2.Bp as bp1, r}	
 							<ul>
 								<li class="li1">
 									{#if bp1.Html.length!=0||bp1.Img.length!=0}
-									{console.log("doing it, imglen=",bp1.Img.length," htmllen=",bp1.Html.length)}
-									{console.log("st:",j," sst:",60," bp:",r," sbp:",60)}
+								
 									{#await grabCorrect(pc,j,60,r,60)}
 									{:then obj2}
 									{#each obj2 as objs }
-									{console.log("nig ct",objs)}
-									{console.log("st:",j," sst:",60," bp:",r," sbp:",60)}
+								
 									{#if (objs.isHtml)==true}
 									{@html objs.content}
 									{:else if objs.isImg ==true}
@@ -243,10 +250,9 @@ onMount(async () => {
 									<li class="li2">
 										
 										{#if (sb.Html.length!=0||sb.Img.length!=0)==true}
-										{console.log("doing it, imglen=",sb.Img.length," htmllen=",sb.Html.length)}
+									
 										{#each grabCorrect(pc,j,60,r,m) as objs }
-										{console.log("nig ct",objs)}
-										{console.log("st:",j," sst:",60," bp:",r," sbp:",m)}
+					
 										{#if (objs.isHtml)==true}
 										{@html objs.content}
 										{:else if (objs.isImg)==true}
@@ -300,10 +306,9 @@ onMount(async () => {
 											
 									<li class="li2">
 										
-										{#if sb.Html.length!=0||sb.Img.length!=0}{console.log("doing it, imglen=",sb.Img.length," htmllen=",sb.Html.length)}
+										{#if sb.Html.length!=0||sb.Img.length!=0}
 										{#each grabCorrect(pc,j,k,l,m) as objs }
-										{console.log("nig ct",objs)}
-										{console.log("st:",j," sst:",k," bp:",l," sbp:",m)}
+										
 										{#if objs.isHtml}
 										{@html objs.content}
 										{:else if objs.isImg}
@@ -326,13 +331,19 @@ onMount(async () => {
 										{/if}
 									{/each}
 								</ul>
-							</div>
+							</div>	
+								
 						</div>
-					{/each}
+					{/each}		
+							{/if}
 				</div>
-			{/each}
+
+			{/each}		
+		
 			{#if data.Article.Gif}
-				{@html "<img src=\""+renderImgUrl(data.Article.Gif)+"\" />"}
+			<div class="w-full flex justify-center ">
+				{@html "<img class=\"\" src=\""+renderImgUrl(data.Article.Gif)+"\" />"}
+				</div>
 			{/if}
 		
 		</div>			
